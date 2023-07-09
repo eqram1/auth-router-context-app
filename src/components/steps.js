@@ -1,8 +1,8 @@
 /*-------------------
 UserContext.js:
-import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, } from 'firebase/auth';
 import app from '../firebase/firebase.config';
+export const AuthContext = createContext();
  --------------------*/
 /*-------------------
 Register.js:
@@ -14,6 +14,7 @@ import { AuthContext } from '../contexts/UserContext';
 Login.js:
 import React, { useContext } from 'react';
 import { AuthContext } from '../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 ---------------------------*/
 /*-------------------
 Header.js:
@@ -41,6 +42,7 @@ root.render(
 /*-------------------
 App.js:
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import './App.css';
 function App() {
   const router = createBrowserRouter([
     {
@@ -49,11 +51,6 @@ function App() {
       children: [
         {
           path: '/',
-          element: <Home></Home>
+          element: <PrivateRoutes><Home></Home></PrivateRoutes>
         },
-return (
-    <div>
-      <RouterProvider router={router}></RouterProvider>
-    </div>
-  );
 ---------------------------*/
